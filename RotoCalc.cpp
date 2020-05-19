@@ -43,15 +43,11 @@ struct Player
         rawStats.pop_front();
         rawStats.pop_back();
         finalScore = 0;
-        // cout << index << " " << teamName << endl;
-        int i = 0;
         for(auto& stat : rawStats)
         {
             auto casted = boost::lexical_cast<float>(stat);
             stats.push_back(casted);
         }
-
-        // cout << teamName << endl;
     }
 
     float GetTriples()
@@ -126,10 +122,7 @@ struct League
     string name;
     string id;
 
-    League()
-    {
-
-    }
+    League() {}
 
     void AddPlayer(Player& p)
     {
@@ -138,7 +131,6 @@ struct League
 
     void PrintPlayers()
     {
-        // cout << "League.PrintPlayer() = " << players.size() << endl;
         for(int i = players.size()-1; i >= 0; i--)
         {
             cout << endl;
@@ -205,15 +197,9 @@ struct League
                     if(players[j].GetTriples() > players[j+1].GetTriples())
                     {
                         auto p = players[j];
-                        // cout << "Old order" << endl;
-                        // cout << "p teamname: " << players[j].GetTeamName() << endl;
-                        // cout << "p+1 teamname: " << players[j+1].GetTeamName() << endl;
                         players[j] = players[j+1];
-                        
                         players[j+1] = p;
-                        // cout << "New order" << endl;
-                        // cout << "p teamname: " << players[j].GetTeamName() << endl;
-                        // cout << "p+1 teamname: " << players[j+1].GetTeamName() << endl;
+
                     }
                 } else if(option == Asts)
                 {
@@ -282,7 +268,6 @@ struct League
                 }
             }
         }
-        // sortFinal(players);
     }
 
     void award()
@@ -381,6 +366,7 @@ public:
         else
             return true;
     }
+
 private:
     void SetOptions()
     {
@@ -460,7 +446,7 @@ private:
 
     void PrintVersion()
     {
-        cout << "Program Options Example " << version << endl;
+        cout << "ESPN Roto Calc " << version << endl;
         throw OptionsExitsProgram();
     }
 
