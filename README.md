@@ -20,6 +20,7 @@ First clone the program, then navigate the the root folder.
 From there, build the program using CMake
 ```
 cmake -S . -B build
+cd build
 make
 ```
 Now, move the python script (fantasy.py) from the root into the build folder with
