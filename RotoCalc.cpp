@@ -147,38 +147,47 @@ struct League
             switch(i) {
                 case Triples:
                     sort(players, Triples);
+                    cout << "Awarding for 3PM" << endl;
                     award();
                     break;
                 case Asts:
                     sort(players, Asts);
+                    cout << "Awarding for AST" << endl;
                     award();
                     break;
                 case Blks:
                     sort(players, Blks);
+                    cout << "Awarding for BLK" << endl;
                     award();
                     break;
                 case FG:
                     sort(players, FG);
+                    cout << "Awarding for FG%" << endl;
                     award();
                     break;
                 case FT:
                     sort(players, FT);
+                    cout << "Awarding for FT%" << endl;
                     award();
                     break;
                 case PTS:
                     sort(players, PTS);
+                    cout << "Awarding for PTS" << endl;
                     award();
                     break;
                 case REB:
                     sort(players, REB);
+                    cout << "Awarding for REB" << endl;
                     award();
                     break;
                 case STL:
                     sort(players, STL);
+                    cout << "Awarding for STL" << endl;
                     award();
                     break;
                 case TO:
                     sort(players, TO);
+                    cout << "Awarding for TO" << endl;
                     award();
                     break;
             }
@@ -275,6 +284,7 @@ struct League
         for(int i = 0; i < players.size(); i++)
         {
             int points = i+1;
+            cout << "\tAdding " << points << " to team: " << players[i].GetTeamName() << endl;
             players[i].AddPoints(points);
         }
     }
@@ -521,19 +531,19 @@ void PrintOptions(Options o)
 
 void CheckForDefaults(Options options)
 {
-    // cout << "Checking: " << options.SWID() << endl;
+     cout << "Checking: " << options.SWID() << endl;
     if(options.SWID() == "SWID")
     {
         cout << "SWID Cookie was not configured properly. If your league is public, run with -p." << endl;
         throw OptionsExitsProgram();
     }
-    // cout << "Checking: " << options.S2() << endl;
+     cout << "Checking: " << options.S2() << endl;
     if(options.S2() == "S2")
     {
         cout << "ESPN_S2 Cookie was not configured properly. If your league is public, run with -p." << endl;
         throw OptionsExitsProgram();
     }
-    // cout << "Checking: " << options.Id() << endl;
+     cout << "Checking: " << options.Id() << endl;
     if(options.Id() == "123456")
     {
         cout << "leagueId was not specified. leagueId is required for the program to run. Set this value in the configuration file, or by passing it with -I" << endl;
@@ -563,7 +573,7 @@ int main(int argc, char* argv[])
         opts.ParseOptions(argc, argv);
         PrintOptions(opts);
         CheckForDefaults(opts);
-        vector<string> args {"python3.6","fantasy.py", opts.SWID(), opts.S2(), opts.Id(), opts.Datafile(), opts.Config(), opts.Year()};
+        vector<string> args {"python3","../fantasy.py", opts.SWID(), opts.S2(), opts.Id(), opts.Datafile(), opts.Config(), opts.Year()};
         cout << "Fetching Data.." << endl;
         auto cmd = join(args, " ");
         system(cmd.c_str());
@@ -571,6 +581,7 @@ int main(int argc, char* argv[])
     }
     catch(const exception& e)
     {
+        cerr << "Exception encountered while executing fantasy.py." << endl;
         cerr << e.what() << endl;
     }
 

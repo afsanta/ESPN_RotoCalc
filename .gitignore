@@ -1,0 +1,7 @@
+/[Bb]uild
+/out
+*.csv
+*.config
+*.ini
+*.txt
+.vs/
